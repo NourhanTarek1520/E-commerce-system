@@ -18,7 +18,7 @@ static getOrderByid = asyncHandler(async (req, res, next) => {
 static updateOrder = asyncHandler(async (req, res, next) => {
 })
 
-static deleteOrder = asyncHandler(async (req, res, next) => {
+static canceleOrder = asyncHandler(async (req, res, next) => {
 })
 static checkoutSession = asyncHandler(async (req, res, next) => {
 })

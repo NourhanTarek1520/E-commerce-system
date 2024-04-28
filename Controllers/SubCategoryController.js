@@ -24,13 +24,13 @@ class SubCategoryController {
         const limit = req.query.limit * 1 || 1; // to convert it from string to number , if there is no query make it 1 
         const page = req.query.page * 1 || 1;
         const skip = (page - 1) * limit;
-        const subCategory = await SubCategory.find().skip(skip).limit(limit);
+        const subCategory = await SubCategory.find().skip(skip).limit(limit).populate({path : "Category" , select :"name"});
         res.status(200).json({ result: subCategory.length, page: page, list: subCategory })
     })
 
     // @route  GET v1/subcategory/:id
     static getSubCategory = asyncHandler(async (req, res, next) => {
-        const subCategory = await SubCategory.findById(req.params.id);
+        const subCategory = await SubCategory.findById(req.params.id).populate( "category");
         if (subCategory == null) { return next(new ApiError(`No Category for this id : ${req.params.id}`, 404)) }
         res.status(200).json({ data: subCategory })
     })

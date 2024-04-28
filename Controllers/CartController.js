@@ -1,8 +1,18 @@
 const Cart = require('../Models/Cart')
 const asyncHandler = require('express-async-handler');
 const ApiError = require('../Shared/ApiError');
+const {getUserId}= require("../Shared/SharedFunctions");
+const User = require('../Models/User');
 class CartController{
-static createCart = asyncHandler(async (req, res, next) => {
+static addProductToCart = asyncHandler(async (req, res, next) => {
+
+    const token = req.headers.authorization.split(' ')[1];
+    console.log(token);
+    const userId = getUserId(token);
+    
+
+
+
 })
 
 static getAllCarts = asyncHandler(async (req, res, next) => {
@@ -21,8 +31,7 @@ static removeSpecificCartItem = asyncHandler(async (req, res, next) => {
 })
 static getLoggedUserCart = asyncHandler(async (req, res, next) => {
 })
-static addProductToCart = asyncHandler(async (req, res, next) => {
-})
+
 static updateCartItemQuantity = asyncHandler(async (req, res, next) => {
 })
 static  clearCart= asyncHandler(async (req, res, next) => {

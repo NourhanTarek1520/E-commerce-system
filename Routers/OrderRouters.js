@@ -6,7 +6,7 @@ const { isAuthorized } = require('../Middlewares/isAuthorizedMiddleware')
 
 router.post('/:id', isAuthorized, OrderController.createOrder);
 router.put('/:id', isAuthorized,  OrderController.updateOrder)
-router.delete('/:id', isAuthorized, OrderController.deleteOrder)
+router.delete('/:id', isAuthorized, OrderController.canceleOrder)
 router.get('/:id', isAuthorized ,OrderController.getOrderByid)
 
 router.get('/:id', isAuthorized ,OrderController.getUserOrderByid)

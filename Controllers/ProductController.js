@@ -10,7 +10,7 @@ class ProductController{
 static createProduct = asyncHandler(async (req, res, next) => {
     const product = await Product.create({ 
         title  : req.body.title , 
-        slug  : slugify(req.body.title), 
+        slug  : req.body.slug, 
         description  : req.body.description , 
         quantity  : req.body.quantity , 
         sold  : req.body.sold , 
@@ -31,7 +31,7 @@ static getProducts  = asyncHandler(async (req, res, next) => {
     const limit = parseInt(req.query.limit || 5, 10); // Ensure numeric limit
     const page = Math.max(1, parseInt(req.query.page || 1, 10)); // Handle negative or zero page
     const skip = (page - 1) * limit;
-    const products = await Product.find().skip(skip).limit(limit);
+    const products = await Product.find().skip(skip).limit(limit).populate({path : "Category" , selected :"name"});
     if (products == null) return next(new ApiError("No Product List" , 404)) ;
     res.status(200).json({result : products.length , "data":products})
 })
